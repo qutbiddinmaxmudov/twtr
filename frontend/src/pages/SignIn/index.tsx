@@ -1,9 +1,11 @@
 import { Button, makeStyles, Typography } from "@material-ui/core";
 import { Twitter } from "@material-ui/icons";
-import React from "react";
-import Footer from "../components/Footer";
+import React, { useState } from "react";
+import Footer from "../../components/Footer";
 
-import leftSideImage from "../images/leftside-background.png";
+import leftSideImage from "../../images/leftside-background.png";
+import LoginModal from "./components/LoginModal";
+import RegisterModal from "./components/RegisterModal";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -63,8 +65,14 @@ const useStyles = makeStyles((theme) => ({
 
 function SignIn() {
   const classes = useStyles();
+  const [activeModal, setActiveModal] = useState<"SignUp" | "SignIn">();
+  const openSignInModal = () => setActiveModal("SignIn");
+  const openSignUpModal = () => setActiveModal("SignUp");
+  const closeModal = ():void => setActiveModal(undefined);
   return (
     <div className={classes.wrapper}>
+      {activeModal === "SignIn" && <LoginModal closeFunc={closeModal}/>}
+      {activeModal === "SignUp" && <RegisterModal closeFunc={closeModal}/>}
       <div className={classes.content}>
         <section className={classes.leftSide}>
           <svg
@@ -86,6 +94,7 @@ function SignIn() {
             Присоединяйтесь к Твиттеру прямо сейчас!
           </Typography>
           <Button
+            onClick={openSignUpModal}
             style={{ marginBottom: 20, maxWidth: 380 }}
             variant="contained"
             color="primary"
@@ -95,6 +104,7 @@ function SignIn() {
           </Button>
 
           <Button
+            onClick={openSignInModal}
             style={{ maxWidth: 380 }}
             variant="outlined"
             color="primary"

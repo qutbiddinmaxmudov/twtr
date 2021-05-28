@@ -20,17 +20,15 @@ function Footer() {
   const classes = styles();
   return (
     <footer className={classes.footerBar}>
-      <Typography>
-        <p className={classes.footerText}>
-          Сайт разработан{" "}
-          <a
-            className={classes.footerLink}
-            href="https://github.com/qutbiddinmaxmudov"
-          >
-            мной
-          </a>{" "}
-          в целях обучения.
-        </p>
+      <Typography className={classes.footerText}>
+        Сайт разработан{" "}
+        <a
+          className={classes.footerLink}
+          href="https://github.com/qutbiddinmaxmudov"
+        >
+          мной
+        </a>{" "}
+        в целях обучения.
       </Typography>
     </footer>
   );
