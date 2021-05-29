@@ -1,11 +1,14 @@
+import TextField from "@material-ui/core/TextField";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import {
-  TextField,
-  makeStyles,
-  withStyles,
-  Button,
-  Typography,
-} from "@material-ui/core";
-import React from "react";
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
+
+import React, { useState } from "react";
 import ModalBlock from "../../../components/ModalBlock";
 
 const CssTextField = withStyles({
@@ -42,14 +45,21 @@ const styles = makeStyles((theme) => ({
   loginInfoText: {
     fontSize: 15,
     lineHeight: 1.25,
-    marginBottom: 30
+    marginBottom: 30,
   },
 }));
 interface loginModalParams {
   closeFunc: () => void;
 }
+
 function LoginModal({ closeFunc }: loginModalParams) {
   const classes = styles();
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
+  };
+
   return (
     <ModalBlock
       title={"Создайте учетную запись"}
@@ -66,6 +76,19 @@ function LoginModal({ closeFunc }: loginModalParams) {
         если эта учетная запись предназначена для компании, домашнего животного
         и т. д.
       </Typography>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <KeyboardDatePicker
+          margin="normal"
+          id="date-picker-dialog"
+          label="Date picker dialog"
+          format="MM/dd/yyyy"
+          value={selectedDate}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{
+            "aria-label": "change date",
+          }}
+        />
+      </MuiPickersUtilsProvider>
       <Button
         className={classes.loginButton}
         variant="contained"
