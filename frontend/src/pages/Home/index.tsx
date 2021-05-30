@@ -19,7 +19,7 @@ import Footer from "../../components/Footer";
 
 const styles = makeStyles((themes) => ({
   wrapper: {
-    height: "calc(100vh - 50px)",
+    minHeight: "calc(100vh - 50px)",
   },
   logo: {
     width: "max-content",
