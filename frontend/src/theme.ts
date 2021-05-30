@@ -12,7 +12,7 @@ const theme = createMuiTheme({
       "'Ubuntu'",
       "'Helvetica Neue'",
       "sans-serif",
-    ].join(','),
+    ].join(","),
   },
   palette: {
     primary: {
@@ -22,6 +22,7 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: "rgb(26, 145, 218)",
+      dark: "rgba(0, 0, 0, 0.54)",
     },
     error: {
       main: red.A400,
@@ -33,7 +34,7 @@ const theme = createMuiTheme({
       primary: "#14171a",
     },
     action: {
-      disabledBackground: "rgb(153 216 255)",
+      disabledBackground: "rgb(153, 216, 255)",
       disabled: "#fff",
     },
   },
