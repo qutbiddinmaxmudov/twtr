@@ -2,6 +2,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import Container from '@material-ui/core/Container'
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import Twitter from "@material-ui/icons/Twitter";
@@ -14,7 +15,7 @@ import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 
 export const Home: React.FC = (): React.ReactElement => {
   return (
-    <section>
+    <Container component="section" maxWidth="lg">
       <Grid container spacing={3}>
         <Grid item xs={1}>
           <List style={{ width: "max-content" }}>
@@ -48,6 +49,6 @@ export const Home: React.FC = (): React.ReactElement => {
           <Paper>xs</Paper>
         </Grid>
       </Grid>
-    </section>
+    </Container>
   );
 };
