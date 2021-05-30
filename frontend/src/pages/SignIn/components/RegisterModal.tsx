@@ -14,7 +14,6 @@ import ModalBlock from "../../../components/ModalBlock";
 const CssTextField = withStyles({
   root: {
     marginBottom: 15,
-
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
         borderColor: "rgb(196, 207, 214)",
@@ -34,6 +33,8 @@ const styles = makeStyles((theme) => ({
     marginBottom: 15,
     maxWidth: "100%",
     width: 320,
+    marginLeft: "auto",
+    marginTop: 30,
   },
   loginInfoTitle: {
     fontSize: 15,
@@ -55,16 +56,13 @@ interface loginModalParams {
 function LoginModal({ closeFunc }: loginModalParams) {
   const classes = styles();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-  };
+  const handleDateChange = (date: Date | null) => setSelectedDate(date);
 
   return (
     <ModalBlock
       title={"Создайте учетную запись"}
       closeFunc={closeFunc}
-      size="md"
+      size="sm"
     >
       <CssTextField label="Имя" variant="outlined" />
       <CssTextField label="Почта" variant="outlined" />
@@ -78,10 +76,12 @@ function LoginModal({ closeFunc }: loginModalParams) {
       </Typography>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
+          inputVariant="outlined"
           margin="normal"
           id="date-picker-dialog"
-          label="Date picker dialog"
-          format="MM/dd/yyyy"
+          label="День месяц год"
+          format="dd/MM/yyyy"
+          animateYearScrolling={true}
           value={selectedDate}
           onChange={handleDateChange}
           KeyboardButtonProps={{

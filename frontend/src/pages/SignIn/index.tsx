@@ -63,16 +63,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignIn() {
+export const SignIn: React.FC = (): React.ReactElement => {
   const classes = useStyles();
   const [activeModal, setActiveModal] = useState<"SignUp" | "SignIn">();
   const openSignInModal = () => setActiveModal("SignIn");
   const openSignUpModal = () => setActiveModal("SignUp");
-  const closeModal = ():void => setActiveModal(undefined);
+  const closeModal = (): void => setActiveModal(undefined);
   return (
     <div className={classes.wrapper}>
-      {activeModal === "SignIn" && <LoginModal closeFunc={closeModal}/>}
-      {activeModal === "SignUp" && <RegisterModal closeFunc={closeModal}/>}
+      {activeModal === "SignIn" && <LoginModal closeFunc={closeModal} />}
+      {activeModal === "SignUp" && <RegisterModal closeFunc={closeModal} />}
       <div className={classes.content}>
         <section className={classes.leftSide}>
           <svg
@@ -117,6 +117,4 @@ function SignIn() {
       <Footer />
     </div>
   );
-}
-
-export default SignIn;
+};

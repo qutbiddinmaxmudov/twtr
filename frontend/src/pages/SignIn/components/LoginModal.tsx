@@ -21,22 +21,29 @@ const CssTextField = withStyles({
 })(TextField);
 
 const styles = makeStyles((theme) => ({
-  loginButton:{
-    marginBottom:15,
-    maxWidth: '100%',
-    width: 320
-  }
+  loginButton: {
+    marginBottom: 15,
+    maxWidth: "100%",
+    width: 320,
+  },
 }));
-interface loginModalParams{
-  closeFunc:()=>void
+interface loginModalParams {
+  closeFunc: () => void;
 }
-function LoginModal({closeFunc}:loginModalParams) {
+function LoginModal({ closeFunc }: loginModalParams) {
   const classes = styles();
   return (
     <ModalBlock title={"Войти в Твиттер"} closeFunc={closeFunc}>
       <CssTextField label="Логин" variant="outlined" />
       <CssTextField label="Пароль" variant="outlined" />
-      <Button className={classes.loginButton} variant="contained" color="primary" fullWidth> Войти </Button>
+      <Button
+        className={classes.loginButton}
+        variant="contained"
+        color="primary"
+        fullWidth
+      >
+        Войти
+      </Button>
     </ModalBlock>
   );
 }
