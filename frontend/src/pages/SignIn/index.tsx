@@ -1,7 +1,7 @@
 import { Button, makeStyles, Typography } from "@material-ui/core";
 import { Twitter } from "@material-ui/icons";
 import React, { useState } from "react";
-import Footer from "../../components/Footer";
+import { Footer } from "../../components/Footer";
 
 import leftSideImage from "../../images/leftside-background.png";
 import LoginModal from "./components/LoginModal";

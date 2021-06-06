@@ -18,7 +18,7 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-function Footer() {
+export const Footer = () => {
   const classes = styles();
   return (
     <footer className={classes.footerBar}>
@@ -34,6 +34,4 @@ function Footer() {
       </Typography>
     </footer>
   );
-}
-
-export default Footer;
+};

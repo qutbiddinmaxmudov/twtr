@@ -1,6 +1,6 @@
 import { TextField, makeStyles, withStyles, Button } from "@material-ui/core";
 import React from "react";
-import ModalBlock from "../../../components/ModalBlock";
+import { ModalBlock } from "../../../components/ModalBlock";
 
 const CssTextField = withStyles({
   root: {

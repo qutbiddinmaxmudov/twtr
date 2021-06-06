@@ -8,11 +8,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
 interface ModalBlockProps {
-  title: string;
+  title?: string;
   children: React.ReactNode;
   closeFunc: () => void;
   size?: "lg" | "md" | "sm" | "xl" | "xs";
-  big?: boolean;
+  visible?: boolean
 }
 
 const styles = makeStyles((theme) => ({
@@ -36,17 +36,18 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-function ModalBlock({
+export const ModalBlock = ({
   title,
   children,
   size = "sm",
   closeFunc,
-}: ModalBlockProps) {
+  visible=true
+}: ModalBlockProps): React.ReactElement => {
   const classes = styles();
   return (
     <Dialog
       maxWidth={size}
-      open={true}
+      open={visible}
       onClose={closeFunc}
       aria-labelledby="form-dialog-title"
     >
@@ -61,6 +62,4 @@ function ModalBlock({
       <DialogContent className={classes.modalContent}>{children}</DialogContent>
     </Dialog>
   );
-}
-
-export default ModalBlock;
+};

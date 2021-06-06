@@ -9,7 +9,7 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 
 import React, { useState } from "react";
-import ModalBlock from "../../../components/ModalBlock";
+import { ModalBlock } from "../../../components/ModalBlock";
 
 const CssTextField = withStyles({
   root: {

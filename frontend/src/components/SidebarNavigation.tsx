@@ -1,49 +1,35 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-
 import Twitter from "@material-ui/icons/Twitter";
 import SearchIcon from "@material-ui/icons/Search";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import CreateIcon from '@material-ui/icons/Create';
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+import Hidden from "@material-ui/core/Hidden";
+import { AddTweetForm } from "./AddTweetForm";
+import { ModalBlock } from "./ModalBlock";
+import styles from '../pages/Home/styles'
 
-const styles = makeStyles((themes) => ({
-  logo: {
-    width: "max-content",
-  },
-  logoIcon: {
-    fontSize: 32,
-  },
-  navigationButton: {
-    borderRadius: 20,
-    transition: "color 0.5s, background 0.5s",
-    color: themes.palette.secondary.dark,
-    padding: 12,
-    height: "auto",
-    "&:hover": {
-      color: themes.palette.secondary.main,
-    },
-  },
-  navigationIcon: {
-    marginRight: 15,
-    fontSize: 28,
-  },
-  navigationButtonText: {
-    fontSize: 22,
-    fontWeight: 600,
-  },
-}));
-
-const SidebarNavigation = () => {
+export const SidebarNavigation = (): React.ReactElement => {
   const classes = styles();
+  const [visibleAddTweet, setSetVisibleAddTweet] =
+    React.useState<boolean>(false);
+
+  const handleClickOpenAddTweet = () => {
+    setSetVisibleAddTweet(true);
+  };
+
+  const onCloseAddTweet = () => {
+    setSetVisibleAddTweet(false);
+  };
   return (
     <List>
       <ListItem className={classes.logo} component={IconButton} color="primary">
@@ -51,37 +37,71 @@ const SidebarNavigation = () => {
       </ListItem>
       <ListItem className={classes.navigationButton} component={Button}>
         <SearchIcon className={classes.navigationIcon} />
-        <Typography className={classes.navigationButtonText}>Поиск</Typography>
+        <Hidden smDown>
+          <Typography className={classes.navigationButtonText}>
+            Поиск
+          </Typography>
+        </Hidden>
       </ListItem>
       <ListItem className={classes.navigationButton} component={Button}>
         <NotificationsIcon className={classes.navigationIcon} />
-        <Typography className={classes.navigationButtonText}>
-          Уведомления
-        </Typography>
+        <Hidden smDown>
+          <Typography className={classes.navigationButtonText}>
+            Уведомления
+          </Typography>
+        </Hidden>
       </ListItem>
       <ListItem className={classes.navigationButton} component={Button}>
         <MailOutlineIcon className={classes.navigationIcon} />
-        <Typography className={classes.navigationButtonText}>
-          Сообщения
-        </Typography>
+        <Hidden smDown>
+          <Typography className={classes.navigationButtonText}>
+            Сообщения
+          </Typography>
+        </Hidden>
       </ListItem>
       <ListItem className={classes.navigationButton} component={Button}>
         <BookmarkBorderIcon className={classes.navigationIcon} />
-        <Typography className={classes.navigationButtonText}>
-          Закладки
-        </Typography>
+        <Hidden smDown>
+          <Typography className={classes.navigationButtonText}>
+            Закладки
+          </Typography>
+        </Hidden>
       </ListItem>
       <ListItem className={classes.navigationButton} component={Button}>
         <ListAltIcon className={classes.navigationIcon} />
-        <Typography className={classes.navigationButtonText}>Списки</Typography>
+        <Hidden smDown>
+          <Typography className={classes.navigationButtonText}>
+            Списки
+          </Typography>
+        </Hidden>
       </ListItem>
       <ListItem className={classes.navigationButton} component={Button}>
         <PermIdentityIcon className={classes.navigationIcon} />
-        <Typography className={classes.navigationButtonText}>
-          Профиль
-        </Typography>
+        <Hidden smDown>
+          <Typography className={classes.navigationButtonText}>
+            Профиль
+          </Typography>
+        </Hidden>
+      </ListItem>
+      <ListItem>
+        <Button
+          onClick={handleClickOpenAddTweet}
+          className={classes.sideMenuTweetButton}
+          variant="contained"
+          color="primary"
+          fullWidth
+        >
+          <Hidden smDown>Твитнуть</Hidden>
+          <Hidden mdUp>
+            <CreateIcon />
+          </Hidden>
+        </Button>
+        <ModalBlock closeFunc={onCloseAddTweet} visible={visibleAddTweet}>
+          <div style={{ width: 550 }}>
+            <AddTweetForm maxRows={15} classes={classes} />
+          </div>
+        </ModalBlock>
       </ListItem>
     </List>
   );
 };
-export default SidebarNavigation;
