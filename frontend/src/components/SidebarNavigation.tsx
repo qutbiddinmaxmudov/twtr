@@ -1,9 +1,9 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import Twitter from "@material-ui/icons/Twitter";
 import SearchIcon from "@material-ui/icons/Search";
@@ -13,7 +13,6 @@ import CreateIcon from '@material-ui/icons/Create';
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-import Hidden from "@material-ui/core/Hidden";
 import { AddTweetForm } from "./AddTweetForm";
 import { ModalBlock } from "./ModalBlock";
 import styles from '../pages/Home/styles'
