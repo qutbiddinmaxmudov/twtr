@@ -1,29 +1,39 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Divider from "@material-ui/core/Divider/Divider";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Grid from '@material-ui/core/Grid'
+import Container from '@material-ui/core/Container'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import Divider from '@material-ui/core/Divider/Divider'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
 
-import SearchIcon from "@material-ui/icons/SearchOutlined";
-import PersonAddIcon from "@material-ui/icons/PersonAddOutlined";
+import SearchIcon from '@material-ui/icons/SearchOutlined'
+import PersonAddIcon from '@material-ui/icons/PersonAddOutlined'
 
-import { AddTweetForm } from "../../components/AddTweetForm";
-import { Footer } from "../../components/Footer";
-import { SidebarNavigation } from "../../components/SidebarNavigation";
-import { Tweet } from "../../components/Tweet";
-import styles from "./styles";
-import { SearchTextField } from "../../components/SearchTextField";
+import { AddTweetForm } from '../../components/AddTweetForm'
+import { Footer } from '../../components/Footer'
+import { SidebarNavigation } from '../../components/SidebarNavigation'
+import { Tweet } from '../../components/Tweet'
+import styles from './styles'
+import { SearchTextField } from '../../components/SearchTextField'
+import { fetchTweets } from '../../store/ducks/tweets/action'
+import { selectTweetsLoadingState, selectTweetsItems } from '../../store/ducks/tweets/selectors'
 
 export const Home: React.FC = (): React.ReactElement => {
-  const classes = styles();
+  const classes = styles()
+  const dispatch = useDispatch()
+  const tweets = useSelector(selectTweetsItems)
+  const loadingStatus = useSelector(selectTweetsLoadingState)
+  
+  useEffect(() => {
+    dispatch(fetchTweets())
+  }, [])
   return (
     <>
       <Container component="section" maxWidth="lg" className={classes.wrapper}>
@@ -49,10 +59,10 @@ export const Home: React.FC = (): React.ReactElement => {
                       <Tweet
                         text="Петиция чтобы в каждой пачке сухариков всегда лежал один большой в три слоя обсыпанный химическими специями царь-сухарик."
                         user={{
-                          fullname: "Glafira Zhur",
-                          username: "GlafiraZhur",
+                          fullname: 'Glafira Zhur',
+                          username: 'GlafiraZhur',
                           avatarUrl:
-                            "https://images.unsplash.com/photo-1528914457842-1af67b57139d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+                            'https://images.unsplash.com/photo-1528914457842-1af67b57139d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
                         }}
                       />
                     ),
@@ -74,10 +84,7 @@ export const Home: React.FC = (): React.ReactElement => {
                     fullWidth
                   />
                   <Paper className={classes.rightSideBlock}>
-                    <Paper
-                      className={classes.rightSideBlockHeader}
-                      variant="outlined"
-                    >
+                    <Paper className={classes.rightSideBlockHeader} variant="outlined">
                       <b>Актуальные темы</b>
                     </Paper>
                     <List>
@@ -85,11 +92,7 @@ export const Home: React.FC = (): React.ReactElement => {
                         <ListItemText
                           primary="Санкт-Петербург"
                           secondary={
-                            <Typography
-                              component="span"
-                              variant="body2"
-                              color="textSecondary"
-                            >
+                            <Typography component="span" variant="body2" color="textSecondary">
                               Твитов: 3 331
                             </Typography>
                           }
@@ -100,11 +103,7 @@ export const Home: React.FC = (): React.ReactElement => {
                         <ListItemText
                           primary="#коронавирус"
                           secondary={
-                            <Typography
-                              component="span"
-                              variant="body2"
-                              color="textSecondary"
-                            >
+                            <Typography component="span" variant="body2" color="textSecondary">
                               Твитов: 163 122
                             </Typography>
                           }
@@ -115,11 +114,7 @@ export const Home: React.FC = (): React.ReactElement => {
                         <ListItemText
                           primary="Беларусь"
                           secondary={
-                            <Typography
-                              component="span"
-                              variant="body2"
-                              color="textSecondary"
-                            >
+                            <Typography component="span" variant="body2" color="textSecondary">
                               Твитов: 13 554
                             </Typography>
                           }
@@ -129,10 +124,7 @@ export const Home: React.FC = (): React.ReactElement => {
                     </List>
                   </Paper>
                   <Paper className={classes.rightSideBlock}>
-                    <Paper
-                      className={classes.rightSideBlockHeader}
-                      variant="outlined"
-                    >
+                    <Paper className={classes.rightSideBlockHeader} variant="outlined">
                       <b>Кого читать</b>
                     </Paper>
                     <List>
@@ -146,11 +138,7 @@ export const Home: React.FC = (): React.ReactElement => {
                         <ListItemText
                           primary="Dock Of Shame"
                           secondary={
-                            <Typography
-                              component="span"
-                              variant="body2"
-                              color="textSecondary"
-                            >
+                            <Typography component="span" variant="body2" color="textSecondary">
                               @FavDockOfShame
                             </Typography>
                           }
@@ -170,5 +158,5 @@ export const Home: React.FC = (): React.ReactElement => {
       </Container>
       <Footer />
     </>
-  );
-};
+  )
+}
