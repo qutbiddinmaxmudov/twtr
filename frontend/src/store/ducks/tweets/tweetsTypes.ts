@@ -9,6 +9,7 @@ export enum LoadingState {
 
 // StateTypes
 export interface Tweet {
+  id: string
   text: string
   user: {
     fullname: string
@@ -19,7 +20,7 @@ export interface Tweet {
 
 export interface TweetsState {
   items: Tweet[]
-  loadingState: string
+  loadingState: LoadingState
 }
 
 // ActionTypes
