@@ -1,5 +1,6 @@
 import produce, { Draft } from 'immer'
-import { LoadingState, TweetsActions, TweetsActionsType, TweetsState } from './tweetsTypes'
+import { LoadingState } from '../../storeTypes'
+import { TweetsActions, TweetsActionsType, TweetsState } from './tweetsTypes'
 
 const initialTweetsState: TweetsState = {
   items: [],

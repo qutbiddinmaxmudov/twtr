@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect'
-import { RootState } from '../../rootReducer'
-import { LoadingState } from './tweetsTypes'
+import { RootState, LoadingState } from '../../storeTypes'
 
 export const selectTweets = (state: RootState) => state.tweets
 

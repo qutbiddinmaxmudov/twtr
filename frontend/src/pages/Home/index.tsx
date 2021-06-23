@@ -124,7 +124,7 @@ export const Home: React.FC = (): React.ReactElement => {
                         <ListItemAvatar>
                           <Avatar
                             alt="Remy Sharp"
-                            src="https://pbs.twimg.com/profile_images/1267938486566428673/US6KRPbA_normal.jpg"
+                            src="https://source.unsplash.com/random/100x100"
                           />
                         </ListItemAvatar>
                         <ListItemText

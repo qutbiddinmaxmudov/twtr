@@ -1,11 +1,7 @@
 import { Action } from 'redux'
+import { LoadingState } from '../../storeTypes'
 
-export enum LoadingState {
-  LOADED = 'LOADED',
-  LOADING = 'LOADING',
-  ERROR = 'ERROR',
-  NEVER = 'NEVER',
-}
+
 
 // StateTypes
 export interface Tweet {
@@ -45,3 +41,4 @@ export interface FetchTweetsActionInterface extends Action<TweetsActionsType> {
 }
 
 export type TweetsActions = SetTweetsActionInterface | SetTweetsLoadingStatusInterface
+

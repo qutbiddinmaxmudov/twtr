@@ -1,6 +1,6 @@
+import { LoadingState } from '../../storeTypes'
 import {
   FetchTweetsActionInterface,
-  LoadingState,
   SetTweetsActionInterface,
   SetTweetsLoadingStatusInterface,
   TweetsActionsType,
