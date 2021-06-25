@@ -25,6 +25,9 @@ import { SearchTextField } from '../../components/SearchTextField'
 import { fetchTweets } from '../../store/ducks/tweets/action'
 import { selectTweetsItems, selectISTweetsLoaded } from '../../store/ducks/tweets/selectors'
 import { TweetSkeleton } from './TweetSkeleton'
+import { fetchTags } from '../../store/ducks/tags/action'
+import { Tags } from '../../components/Tags'
+import { Route } from 'react-router-dom'
 
 export const Home: React.FC = (): React.ReactElement => {
   const classes = styles()
@@ -33,6 +36,7 @@ export const Home: React.FC = (): React.ReactElement => {
   const tweets = useSelector(selectTweetsItems)
   useEffect(() => {
     dispatch(fetchTweets())
+    dispatch(fetchTags())
   }, [dispatch])
   return (
     <>
@@ -54,11 +58,13 @@ export const Home: React.FC = (): React.ReactElement => {
                     </div>
                     <div className={classes.addFormBottomLine} />
                   </Paper>
-                  {isTweetsLoaded ? (
-                    tweets.map((tweet) => <Tweet text={tweet.text} user={tweet.user} key={tweet.id} />)
-                  ) : (
-                    <TweetSkeleton />
-                  )}
+                  <Route path="/home" exact>
+                    {isTweetsLoaded ? (
+                      tweets.map((tweet) => <Tweet text={tweet.text} user={tweet.user} key={tweet.id} />)
+                    ) : (
+                      <TweetSkeleton />
+                    )}
+                  </Route>
                 </Paper>
               </Grid>
               <Grid item xs={4}>
@@ -75,46 +81,7 @@ export const Home: React.FC = (): React.ReactElement => {
                     }}
                     fullWidth
                   />
-                  <Paper className={classes.rightSideBlock}>
-                    <Paper className={classes.rightSideBlockHeader} variant="outlined">
-                      <b>Актуальные темы</b>
-                    </Paper>
-                    <List>
-                      <ListItem className={classes.rightSideBlockItem}>
-                        <ListItemText
-                          primary="Санкт-Петербург"
-                          secondary={
-                            <Typography component="span" variant="body2" color="textSecondary">
-                              Твитов: 3 331
-                            </Typography>
-                          }
-                        />
-                      </ListItem>
-                      <Divider component="li" />
-                      <ListItem className={classes.rightSideBlockItem}>
-                        <ListItemText
-                          primary="#коронавирус"
-                          secondary={
-                            <Typography component="span" variant="body2" color="textSecondary">
-                              Твитов: 163 122
-                            </Typography>
-                          }
-                        />
-                      </ListItem>
-                      <Divider component="li" />
-                      <ListItem className={classes.rightSideBlockItem}>
-                        <ListItemText
-                          primary="Беларусь"
-                          secondary={
-                            <Typography component="span" variant="body2" color="textSecondary">
-                              Твитов: 13 554
-                            </Typography>
-                          }
-                        />
-                      </ListItem>
-                      <Divider component="li" />
-                    </List>
-                  </Paper>
+                  <Tags classes={classes} />
                   <Paper className={classes.rightSideBlock}>
                     <Paper className={classes.rightSideBlockHeader} variant="outlined">
                       <b>Кого читать</b>
@@ -122,10 +89,7 @@ export const Home: React.FC = (): React.ReactElement => {
                     <List>
                       <ListItem className={classes.rightSideBlockItem}>
                         <ListItemAvatar>
-                          <Avatar
-                            alt="Remy Sharp"
-                            src="https://source.unsplash.com/random/100x100"
-                          />
+                          <Avatar alt="Remy Sharp" src="https://source.unsplash.com/random/100x100" />
                         </ListItemAvatar>
                         <ListItemText
                           primary="Dock Of Shame"

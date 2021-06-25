@@ -4,7 +4,7 @@ import { LoadingState } from "../../storeTypes";
 // Tags
 export interface Tag {
   id: string
-  text: string
+  name: string
   count: number
 }
 

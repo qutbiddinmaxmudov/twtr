@@ -1,3 +1,4 @@
+import { TagsState } from './ducks/tags/tagsTypes'
 import { TweetsState } from './ducks/tweets/tweetsTypes'
 
 export enum LoadingState {
@@ -9,4 +10,5 @@ export enum LoadingState {
 
 export interface RootState {
   tweets: TweetsState
+  tags: TagsState
 }
