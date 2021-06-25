@@ -184,6 +184,7 @@ const styles = makeStyles((theme) => ({
   },
   logoIcon: {
     fontSize: 32,
+    color: 'rgb(29, 161, 242)',
   },
   navigationButton: {
     borderRadius: 20,
@@ -202,6 +203,10 @@ const styles = makeStyles((theme) => ({
   navigationButtonText: {
     fontSize: 22,
     fontWeight: 600,
+  },
+  sidebarNavigation: {
+    position: 'sticky',
+    top: 15,
   },
 }))
 export default styles
