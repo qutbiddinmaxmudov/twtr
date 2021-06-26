@@ -5,6 +5,8 @@ const styles = makeStyles((theme) => ({
     minHeight: 'calc(100vh - 50px)',
   },
   tweetsHeader: {
+    display: 'flex',
+    alignItems: 'center',
     borderTop: 'none',
     borderLeft: 'none',
     borderRight: 'none',

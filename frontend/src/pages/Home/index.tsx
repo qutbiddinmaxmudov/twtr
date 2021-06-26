@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Route } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container'
 import Paper from '@material-ui/core/Paper'
@@ -24,10 +25,11 @@ import styles from './styles'
 import { SearchTextField } from '../../components/SearchTextField'
 import { fetchTweets } from '../../store/ducks/tweets/action'
 import { selectTweetsItems, selectISTweetsLoaded } from '../../store/ducks/tweets/selectors'
-import { TweetSkeleton } from './TweetSkeleton'
+import { TweetSkeleton } from './components/TweetSkeleton'
 import { fetchTags } from '../../store/ducks/tags/action'
 import { Tags } from '../../components/Tags'
-import { Route } from 'react-router-dom'
+import { BackButton } from '../../components/BackButton'
+import { SingleTweet } from './components/SingleTweet'
 
 export const Home: React.FC = (): React.ReactElement => {
   const classes = styles()
@@ -50,14 +52,22 @@ export const Home: React.FC = (): React.ReactElement => {
               <Grid item xs={8}>
                 <Paper variant="outlined">
                   <Paper variant="outlined" className={classes.tweetsHeader}>
-                    <Typography variant="h6">Главная</Typography>
+                    <Route path="/home/tweet/:id" exact>
+                      <BackButton />
+                      <Typography variant="h6">Твитнуть</Typography>
+                    </Route>
+                    <Route path={['/', '/home', '/home/search']} exact>
+                      <Typography variant="h6">Главная</Typography>
+                    </Route>
                   </Paper>
-                  <Paper>
-                    <div className={classes.addForm}>
-                      <AddTweetForm classes={classes} />
-                    </div>
-                    <div className={classes.addFormBottomLine} />
-                  </Paper>
+                  <Route path={['/', '/home', '/home/search']} exact>
+                    <Paper>
+                      <div className={classes.addForm}>
+                        <AddTweetForm classes={classes} />
+                      </div>
+                      <div className={classes.addFormBottomLine} />
+                    </Paper>
+                  </Route>
                   <Route path={['/home', '/']} exact>
                     {isTweetsLoaded ? (
                       tweets.map((tweet) => <Tweet id={tweet.id} text={tweet.text} user={tweet.user} key={tweet.id} />)
@@ -65,6 +75,7 @@ export const Home: React.FC = (): React.ReactElement => {
                       <TweetSkeleton />
                     )}
                   </Route>
+                  <Route path="/home/tweet/:id" component={SingleTweet} />
                 </Paper>
               </Grid>
               <Grid item xs={4}>
