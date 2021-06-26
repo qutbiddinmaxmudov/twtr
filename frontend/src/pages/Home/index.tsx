@@ -58,9 +58,9 @@ export const Home: React.FC = (): React.ReactElement => {
                     </div>
                     <div className={classes.addFormBottomLine} />
                   </Paper>
-                  <Route path="/home" exact>
+                  <Route path={['/home', '/']} exact>
                     {isTweetsLoaded ? (
-                      tweets.map((tweet) => <Tweet text={tweet.text} user={tweet.user} key={tweet.id} />)
+                      tweets.map((tweet) => <Tweet id={tweet.id} text={tweet.text} user={tweet.user} key={tweet.id} />)
                     ) : (
                       <TweetSkeleton />
                     )}
