@@ -13,6 +13,9 @@ const styles = makeStyles((theme) => ({
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
     borderRadius: 0,
     padding: '10px 15px',
+    position: 'sticky',
+    top: 0,
+    zIndex: 3,
     '& h6': {
       fontWeight: 800,
     },
