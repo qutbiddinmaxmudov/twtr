@@ -3,7 +3,7 @@ import { LoadingState } from '../../storeTypes'
 import { TweetActions, TweetState, TweetActionsType } from './tweetTypes'
 
 const initialTweetState: TweetState = {
-  data: undefined,
+  data: null,
   loadingState: LoadingState.NEVER,
 }
 

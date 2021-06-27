@@ -5,7 +5,7 @@ import { Tweet } from '../tweets/tweetsTypes'
 // Tweet
 
 export interface TweetState {
-  data?: Tweet
+  data: Tweet | null
   loadingState: LoadingState
 }
 
