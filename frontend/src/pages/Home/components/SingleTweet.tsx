@@ -28,6 +28,8 @@ const styles = makeStyles((theme) => ({
   },
   avatar: {
     marginRight: 20,
+    height: 48,
+    width: 48,
   },
   tweetInfo: {
     display: 'flex',
