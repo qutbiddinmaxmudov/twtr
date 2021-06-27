@@ -1,6 +1,6 @@
-import { Action } from "redux";
-import { LoadingState } from "../../storeTypes";
-import { Tweet } from "../tweets/tweetsTypes";
+import { Action } from 'redux'
+import { LoadingState } from '../../storeTypes'
+import { Tweet } from '../tweets/tweetsTypes'
 
 // Tweet
 
@@ -29,7 +29,7 @@ export interface SetTweetLoadingStatusInterface extends Action<TweetActionsType>
 
 export interface FetchTweetActionInterface extends Action<TweetActionsType> {
   type: TweetActionsType.FETCH_DATA
+  payload: string
 }
 
 export type TweetActions = SetTweetActionInterface | SetTweetLoadingStatusInterface
-

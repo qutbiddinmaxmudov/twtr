@@ -56,8 +56,12 @@ export const Home: React.FC = (): React.ReactElement => {
                       <BackButton />
                       <Typography variant="h6">Твитнуть</Typography>
                     </Route>
-                    <Route path={['/', '/home', '/home/search']} exact>
+                    <Route path={['/', '/home']} exact>
                       <Typography variant="h6">Главная</Typography>
+                    </Route>
+                    <Route path={'/home/search'} exact>
+                      <BackButton />
+                      <Typography variant="h6">Твиты</Typography>
                     </Route>
                   </Paper>
                   <Route path={['/', '/home', '/home/search']} exact>
