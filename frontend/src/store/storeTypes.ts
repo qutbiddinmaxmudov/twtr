@@ -8,6 +8,12 @@ export enum LoadingState {
   ERROR = 'ERROR',
   NEVER = 'NEVER',
 }
+export enum AddFormState {
+  ADDED = 'ADDED',
+  LOADING = 'LOADING',
+  ERROR = 'ERROR',
+  NEVER = 'NEVER',
+}
 
 export interface RootState {
   tweets: TweetsState

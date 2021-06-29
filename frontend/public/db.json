@@ -10,44 +10,17 @@
       }
     },
     {
-      "id": "5u6b1zqcd85",
+      "id": "a78xxndsnh5",
+      "text": "asdasdasdasdasd",
+      "user": {
+        "fullname": "Test User",
+        "username": "test",
+        "avatarUrl": "https://source.unsplash.com/random/100x100?3"
+      }
+    },
+    {
+      "id": "yd9sca95gif",
       "text": "asdasd",
-      "user": {
-        "fullname": "Test User",
-        "username": "test",
-        "avatarUrl": "https://source.unsplash.com/random/100x100?3"
-      }
-    },
-    {
-      "id": "tznuuzpavde",
-      "text": "Почему происходит перезагрузка страницы ",
-      "user": {
-        "fullname": "Test User",
-        "username": "test",
-        "avatarUrl": "https://source.unsplash.com/random/100x100?3"
-      }
-    },
-    {
-      "id": "ts0zdm9teb",
-      "text": "ааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа",
-      "user": {
-        "fullname": "Test User",
-        "username": "test",
-        "avatarUrl": "https://source.unsplash.com/random/100x100?3"
-      }
-    },
-    {
-      "id": "4bt2nchdq85",
-      "text": "может по этому ",
-      "user": {
-        "fullname": "Test User",
-        "username": "test",
-        "avatarUrl": "https://source.unsplash.com/random/100x100?3"
-      }
-    },
-    {
-      "id": "4ytzmjmv5vq",
-      "text": "asdasdasd",
       "user": {
         "fullname": "Test User",
         "username": "test",

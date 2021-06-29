@@ -24,7 +24,7 @@ import { Tweet } from '../../components/Tweet'
 import styles from './styles'
 import { SearchTextField } from '../../components/SearchTextField'
 import { fetchTweets } from '../../store/ducks/tweets/action'
-import { selectTweetsItems, selectISTweetsLoaded } from '../../store/ducks/tweets/selectors'
+import { selectTweetsItems, selectIsTweetsLoaded } from '../../store/ducks/tweets/selectors'
 import { TweetSkeleton } from './components/TweetSkeleton'
 import { fetchTags } from '../../store/ducks/tags/action'
 import { Tags } from '../../components/Tags'
@@ -34,7 +34,7 @@ import { SingleTweet } from './components/SingleTweet'
 export const Home: React.FC = (): React.ReactElement => {
   const classes = styles()
   const dispatch = useDispatch()
-  const isTweetsLoaded = useSelector(selectISTweetsLoaded)
+  const isTweetsLoaded = useSelector(selectIsTweetsLoaded)
   const tweets = useSelector(selectTweetsItems)
   useEffect(() => {
     dispatch(fetchTweets())

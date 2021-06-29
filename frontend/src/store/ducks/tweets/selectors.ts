@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { RootState, LoadingState } from '../../storeTypes'
+import { RootState, LoadingState, AddFormState } from '../../storeTypes'
 
 export const selectTweets = (state: RootState) => state.tweets
 
@@ -8,6 +8,10 @@ export const selectTweetsItems = createSelector(selectTweets, (tweets) => tweets
 
 // export const selectTweetsLoadingState = (state: RootState) => selectTweets(state).loadingState
 export const selectTweetsLoadingState = createSelector(selectTweets, (tweets) => tweets.loadingState)
+export const selectAddTweetLoadingState = createSelector(selectTweets, (tweets) => tweets.addFormState)
 
-export const selectISTweetsLoaded = (state: RootState) => selectTweetsLoadingState(state) === LoadingState.LOADED
-export const selectISTweetsLoading = (state: RootState) => selectTweetsLoadingState(state) === LoadingState.LOADING
+export const selectIsTweetsLoaded = (state: RootState) => selectTweetsLoadingState(state) === LoadingState.LOADED
+export const selectIsTweetsLoading = (state: RootState) => selectTweetsLoadingState(state) === LoadingState.LOADING
+
+export const selectIsAddTweetLoading = (state:RootState)=> selectAddTweetLoadingState(state) === AddFormState.LOADING
+export const selectIsAddTweetFailed = (state:RootState)=> selectAddTweetLoadingState(state) === AddFormState.ERROR

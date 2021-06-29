@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import classNames from 'classnames'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import Snackbar from '@material-ui/core/Snackbar'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -8,8 +9,10 @@ import IconButton from '@material-ui/core/IconButton'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined'
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
+import Alert from '@material-ui/lab/Alert'
 import useHomeStyles from '../pages/Home/styles'
 import { addTweet } from '../store/ducks/tweets/action'
+import { selectIsAddTweetFailed, selectIsAddTweetLoading } from '../store/ducks/tweets/selectors'
 interface AddTweetFormProps {
   maxRows?: number
   classes: ReturnType<typeof useHomeStyles>
@@ -22,9 +25,17 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
 }: AddTweetFormProps): React.ReactElement => {
   const dispatch = useDispatch()
   const [text, setText] = React.useState<string>('')
+  const [visibleNotification, setVisibleNotification] = React.useState<boolean>(false)
   const textLimitPercent = Math.round((text.length / 280) * 100)
   const textCount = MAX_LENGTH - text.length
+  const isTweetLoading = useSelector(selectIsAddTweetLoading)
+  const isTweetFailed = useSelector(selectIsAddTweetFailed)
 
+  useEffect(() => {
+    if (isTweetFailed) setVisibleNotification(true)
+  }, [isTweetFailed])
+
+  const handleNotificationClose = () => setVisibleNotification(false)
   const handleChangeTextarea = (e: React.FormEvent<HTMLTextAreaElement>): void => {
     if (e.currentTarget) {
       setText(e.currentTarget.value)
@@ -38,6 +49,20 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
 
   return (
     <div>
+      <Snackbar
+        open={visibleNotification}
+        onClose={handleNotificationClose}
+        autoHideDuration={5000}
+        key="top"
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+      >
+        <Alert onClose={handleNotificationClose} severity="error">
+          Не удалось добавить твит 😕
+        </Alert>
+      </Snackbar>
       <div className={classes.addFormBody}>
         <Avatar
           className={classes.tweetAvatar}
@@ -67,7 +92,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
               <span>{textCount}</span>
               <div className={classes.addFormCircleProgress}>
                 <CircularProgress
-                  variant="static"
+                  variant="determinate"
                   size={20}
                   thickness={5}
                   value={text.length >= MAX_LENGTH ? 100 : textLimitPercent}
@@ -75,7 +100,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
                 />
                 <CircularProgress
                   style={{ color: 'rgba(0, 0, 0, 0.1)' }}
-                  variant="static"
+                  variant="determinate"
                   size={20}
                   thickness={5}
                   value={100}
@@ -85,11 +110,11 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
           )}
           <Button
             onClick={handleClickAddTweet}
-            disabled={text.length >= MAX_LENGTH}
+            disabled={!text || text.length >= MAX_LENGTH || isTweetLoading}
             color="primary"
             variant="contained"
           >
-            Твитнуть
+            {isTweetLoading ? <CircularProgress color="primary" size={30} /> : 'Твитнуть'}
           </Button>
         </div>
       </div>
