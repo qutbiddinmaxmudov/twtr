@@ -5,6 +5,9 @@ import {
   SetTweetsLoadingStatusInterface,
   TweetsActionsType,
   TweetsState,
+  AddTweetActionInterface,
+  Tweet,
+  AddFetchedTweetActionInterface,
 } from './tweetsTypes'
 
 export const setTweets = (payload: TweetsState['items']): SetTweetsActionInterface => ({
@@ -19,4 +22,14 @@ export const setTweetsLoadingStatus = (payload: LoadingState): SetTweetsLoadingS
 
 export const fetchTweets = (): FetchTweetsActionInterface => ({
   type: TweetsActionsType.FETCH_TWEETS,
+})
+
+export const addFetchedTweet = (payload: Tweet): AddFetchedTweetActionInterface => ({
+  type: TweetsActionsType.ADD_FETCHED_TWEET,
+  payload,
+})
+
+export const addTweet = (payload: string): AddTweetActionInterface => ({
+  type: TweetsActionsType.ADD_TWEET,
+  payload,
 })

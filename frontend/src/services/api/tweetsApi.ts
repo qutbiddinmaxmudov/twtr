@@ -10,4 +10,8 @@ export const tweetsApi = {
     const { data } = await axios.get(`/tweets/${id}`)
     return data
   },
+  async addTweet(payload: Tweet): Promise<Tweet> {
+    const { data } = await axios.post(`/tweets`, payload)
+    return data
+  },
 }

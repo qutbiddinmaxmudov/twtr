@@ -1,38 +1,40 @@
-import React from "react";
-import classNames from "classnames";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import IconButton from "@material-ui/core/IconButton";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
-import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
-import EmojiIcon from "@material-ui/icons/SentimentSatisfiedOutlined";
-import useHomeStyles from "../pages/Home/styles";
+import React from 'react'
+import classNames from 'classnames'
+import { useDispatch } from 'react-redux'
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import IconButton from '@material-ui/core/IconButton'
+import TextareaAutosize from '@material-ui/core/TextareaAutosize'
+import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined'
+import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined'
+import useHomeStyles from '../pages/Home/styles'
+import { addTweet } from '../store/ducks/tweets/action'
 interface AddTweetFormProps {
-  maxRows?: number;
-  classes: ReturnType<typeof useHomeStyles>;
+  maxRows?: number
+  classes: ReturnType<typeof useHomeStyles>
 }
-const MAX_LENGTH = 280;
+const MAX_LENGTH = 280
 
 export const AddTweetForm: React.FC<AddTweetFormProps> = ({
   maxRows,
   classes,
 }: AddTweetFormProps): React.ReactElement => {
-  const [text, setText] = React.useState<string>("");
-  const textLimitPercent = Math.round((text.length / 280) * 100);
-  const textCount = MAX_LENGTH - text.length;
+  const dispatch = useDispatch()
+  const [text, setText] = React.useState<string>('')
+  const textLimitPercent = Math.round((text.length / 280) * 100)
+  const textCount = MAX_LENGTH - text.length
 
-  const handleChangeTextarea = (
-    e: React.FormEvent<HTMLTextAreaElement>
-  ): void => {
+  const handleChangeTextarea = (e: React.FormEvent<HTMLTextAreaElement>): void => {
     if (e.currentTarget) {
-      setText(e.currentTarget.value);
+      setText(e.currentTarget.value)
     }
-  };
+  }
 
   const handleClickAddTweet = (): void => {
-    setText("");
-  };
+    dispatch(addTweet(text))
+    setText('')
+  }
 
   return (
     <div>
@@ -51,12 +53,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
         />
       </div>
       <div className={classes.addFormBottom}>
-        <div
-          className={classNames(
-            classes.tweetFooter,
-            classes.addFormBottomActions
-          )}
-        >
+        <div className={classNames(classes.tweetFooter, classes.addFormBottomActions)}>
           <IconButton color="primary">
             <ImageOutlinedIcon style={{ fontSize: 26 }} />
           </IconButton>
@@ -74,12 +71,10 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
                   size={20}
                   thickness={5}
                   value={text.length >= MAX_LENGTH ? 100 : textLimitPercent}
-                  style={
-                    text.length >= MAX_LENGTH ? { color: "red" } : undefined
-                  }
+                  style={text.length >= MAX_LENGTH ? { color: 'red' } : undefined}
                 />
                 <CircularProgress
-                  style={{ color: "rgba(0, 0, 0, 0.1)" }}
+                  style={{ color: 'rgba(0, 0, 0, 0.1)' }}
                   variant="static"
                   size={20}
                   thickness={5}
@@ -99,5 +94,5 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

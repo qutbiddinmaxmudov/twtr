@@ -3,6 +3,7 @@ import { grey } from '@material-ui/core/colors'
 const styles = makeStyles((theme) => ({
   wrapper: {
     minHeight: 'calc(100vh - 50px)',
+    marginBottom: 10,
   },
   tweetsHeader: {
     display: 'flex',
