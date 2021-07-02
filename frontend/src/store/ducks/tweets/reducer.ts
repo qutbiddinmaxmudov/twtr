@@ -18,7 +18,7 @@ export const tweetsReducer = produce((draft: Draft<TweetsState>, action: TweetsA
       draft.loadingState = action.payload
       break
     case TweetsActionsType.ADD_FETCHED_TWEET:
-      draft.items.push(action.payload)
+      draft.items.unshift(action.payload)
       break
     case TweetsActionsType.ADD_TWEET_LOADING_STATUS:
       draft.addFormState = action.payload

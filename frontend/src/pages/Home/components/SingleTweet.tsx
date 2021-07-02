@@ -39,6 +39,7 @@ const styles = makeStyles((theme) => ({
     fontSize: 23,
     lineHeight: '28px',
     marginBottom: 30,
+    wordBreak: 'break-word' 
   },
   loadingProgress: {
     display: 'block',
